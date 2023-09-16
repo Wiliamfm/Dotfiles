@@ -19,7 +19,7 @@ vim.opt.spell= false
 
 -- Selecting text
 
-vim.opt.clipboard = "unnamed"
+vim.opt.clipboard = "unnamedplus" --use unnamedplus to "use" the system clipboard; "" to use default
 
 -- Tabs and indenting
 
