@@ -4,7 +4,7 @@ local settings = {
     }
 }
 
-return {
+local chadtree = {
 	'ms-jpq/chadtree',
 	branch = 'chad',
 	build = 'python3 -m chadtree deps',
@@ -15,3 +15,5 @@ return {
     --vim.api.nvim_set_var('chadtree_settings', settings)
   end,
 }
+
+return chadtree
