@@ -1,0 +1,6 @@
+{
+  "autoclose.nvim": { "branch": "main", "commit": "17f1596054528848f1c47c9ef113a3a020aa26ae" },
+  "catppuccin": { "branch": "main", "commit": "85e93601e0f0b48aa2c6bbfae4d0e9d7a1898280" },
+  "chadtree": { "branch": "chad", "commit": "2bf3d1fc5b53da1ba681676c9cb3431f03f9f497" },
+  "lazy.nvim": { "branch": "main", "commit": "2a9354c7d2368d78cbd5575a51a2af5bd8a6ad01" }
+}

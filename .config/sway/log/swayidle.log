@@ -1,0 +1,128 @@
+2023-08-13 11:43:37 - [Line 903] Got timeout
+2023-08-13 11:43:37 - [Line 750] Register idle timeout at 300000 ms
+2023-08-13 11:43:37 - [Line 751] Setup idle
+2023-08-13 11:43:37 - [Line 713] Command: swaylock -fF -c 00000 >> ./log/swaylock.log 2>&1
+2023-08-13 11:43:37 - [Line 903] Got timeout
+2023-08-13 11:43:37 - [Line 750] Register idle timeout at 600000 ms
+2023-08-13 11:43:37 - [Line 751] Setup idle
+2023-08-13 11:43:37 - [Line 713] Command: swaymsg "output * power off"
+2023-08-13 11:43:37 - [Line 756] Setup resume
+2023-08-13 11:43:37 - [Line 713] Command: swaymsg "output * power on"
+2023-08-13 11:43:37 - [Line 906] Got before-sleep
+2023-08-13 11:43:37 - [Line 713] Command: swaylock -fF -c 000000
+2023-08-13 11:43:37 - [Line 778] Setup sleep lock: swaylock -fF -c 000000
+2023-08-13 11:43:37 - [Line 1078] No config file found.
+2023-08-13 11:43:37 - [Line 463] Using session: /org/freedesktop/login1/session/_31
+2023-08-13 11:43:37 - [Line 223] Got sleep lock: 11
+2023-08-13 11:43:37 - [Line 621] Enable idle timeouts
+2023-08-13 11:43:37 - [Line 596] Register with timeout: 600000
+2023-08-13 11:43:37 - [Line 596] Register with timeout: 300000
+2023-08-13 11:43:45 - [Line 934] Got SIGTERM
+2023-08-13 11:43:58 - [Line 903] Got timeout
+2023-08-13 11:43:58 - [Line 750] Register idle timeout at 3000 ms
+2023-08-13 11:43:58 - [Line 751] Setup idle
+2023-08-13 11:43:58 - [Line 713] Command: swaylock -fF -c 00000 >> ./log/swaylock.log 2>&1
+2023-08-13 11:43:58 - [Line 903] Got timeout
+2023-08-13 11:43:58 - [Line 750] Register idle timeout at 10000 ms
+2023-08-13 11:43:58 - [Line 751] Setup idle
+2023-08-13 11:43:58 - [Line 713] Command: swaymsg "output * power off"
+2023-08-13 11:43:58 - [Line 756] Setup resume
+2023-08-13 11:43:58 - [Line 713] Command: swaymsg "output * power on"
+2023-08-13 11:43:58 - [Line 906] Got before-sleep
+2023-08-13 11:43:58 - [Line 713] Command: swaylock -fF -c 000000
+2023-08-13 11:43:58 - [Line 778] Setup sleep lock: swaylock -fF -c 000000
+2023-08-13 11:43:58 - [Line 1078] No config file found.
+2023-08-13 11:43:58 - [Line 463] Using session: /org/freedesktop/login1/session/_31
+2023-08-13 11:43:58 - [Line 223] Got sleep lock: 11
+2023-08-13 11:43:58 - [Line 621] Enable idle timeouts
+2023-08-13 11:43:58 - [Line 596] Register with timeout: 10000
+2023-08-13 11:43:58 - [Line 596] Register with timeout: 3000
+2023-08-13 11:44:01 - [Line 650] idle state
+2023-08-13 11:44:01 - [Line 146] Cmd exec swaylock -fF -c 00000 >> ./log/swaylock.log 2>&1
+2023-08-13 11:44:01 - [Line 172] Spawned process swaylock -fF -c 00000 >> ./log/swaylock.log 2>&1
+2023-08-13 11:44:01 - [Line 174] Blocking until process exits
+2023-08-13 11:44:01 - [Line 179] Process exit status: 0
+2023-08-13 11:44:04 - [Line 663] active state
+2023-08-13 11:44:07 - [Line 934] Got SIGTERM
+2023-08-15 21:04:19 - [Line 903] Got timeout
+2023-08-15 21:04:19 - [Line 750] Register idle timeout at 300000 ms
+2023-08-15 21:04:19 - [Line 751] Setup idle
+2023-08-15 21:04:19 - [Line 713] Command: swaylock -fF -c 00000 >> ./log/swaylock.log 2>&1
+2023-08-15 21:04:19 - [Line 903] Got timeout
+2023-08-15 21:04:19 - [Line 750] Register idle timeout at 600000 ms
+2023-08-15 21:04:19 - [Line 751] Setup idle
+2023-08-15 21:04:19 - [Line 713] Command: swaymsg "output * power off"
+2023-08-15 21:04:19 - [Line 756] Setup resume
+2023-08-15 21:04:19 - [Line 713] Command: swaymsg "output * power on"
+2023-08-15 21:04:19 - [Line 906] Got before-sleep
+2023-08-15 21:04:19 - [Line 713] Command: swaylock -fF -c 000000
+2023-08-15 21:04:19 - [Line 778] Setup sleep lock: swaylock -fF -c 000000
+2023-08-15 21:04:19 - [Line 1078] No config file found.
+2023-08-15 21:04:19 - [Line 463] Using session: /org/freedesktop/login1/session/_31
+2023-08-15 21:04:19 - [Line 223] Got sleep lock: 11
+2023-08-15 21:04:19 - [Line 621] Enable idle timeouts
+2023-08-15 21:04:19 - [Line 596] Register with timeout: 600000
+2023-08-15 21:04:19 - [Line 596] Register with timeout: 300000
+2023-08-15 21:04:23 - [Line 934] Got SIGTERM
+2023-08-15 21:04:28 - [Line 903] Got timeout
+2023-08-15 21:04:28 - [Line 750] Register idle timeout at 300000 ms
+2023-08-15 21:04:28 - [Line 751] Setup idle
+2023-08-15 21:04:28 - [Line 713] Command: swaylock -fF -c 00000 >> ./log/swaylock.log 2>&1
+2023-08-15 21:04:28 - [Line 903] Got timeout
+2023-08-15 21:04:28 - [Line 750] Register idle timeout at 600000 ms
+2023-08-15 21:04:28 - [Line 751] Setup idle
+2023-08-15 21:04:28 - [Line 713] Command: swaymsg "output * power off"
+2023-08-15 21:04:28 - [Line 756] Setup resume
+2023-08-15 21:04:28 - [Line 713] Command: swaymsg "output * power on"
+2023-08-15 21:04:28 - [Line 906] Got before-sleep
+2023-08-15 21:04:28 - [Line 713] Command: swaylock -fF -c 000000
+2023-08-15 21:04:28 - [Line 778] Setup sleep lock: swaylock -fF -c 000000
+2023-08-15 21:04:28 - [Line 1078] No config file found.
+2023-08-15 21:04:28 - [Line 463] Using session: /org/freedesktop/login1/session/_31
+2023-08-15 21:04:28 - [Line 223] Got sleep lock: 11
+2023-08-15 21:04:28 - [Line 621] Enable idle timeouts
+2023-08-15 21:04:28 - [Line 596] Register with timeout: 600000
+2023-08-15 21:04:28 - [Line 596] Register with timeout: 300000
+2023-08-15 21:05:40 - [Line 903] Got timeout
+2023-08-15 21:05:40 - [Line 750] Register idle timeout at 300000 ms
+2023-08-15 21:05:40 - [Line 751] Setup idle
+2023-08-15 21:05:40 - [Line 713] Command: swaylock -fF -c 00000 >> ./log/swaylock.log 2>&1
+2023-08-15 21:05:40 - [Line 903] Got timeout
+2023-08-15 21:05:40 - [Line 750] Register idle timeout at 600000 ms
+2023-08-15 21:05:40 - [Line 751] Setup idle
+2023-08-15 21:05:40 - [Line 713] Command: swaymsg "output * power off"
+2023-08-15 21:05:40 - [Line 756] Setup resume
+2023-08-15 21:05:40 - [Line 713] Command: swaymsg "output * power on"
+2023-08-15 21:05:40 - [Line 906] Got before-sleep
+2023-08-15 21:05:40 - [Line 713] Command: swaylock -fF -c 000000
+2023-08-15 21:05:40 - [Line 778] Setup sleep lock: swaylock -fF -c 000000
+2023-08-15 21:05:40 - [Line 1078] No config file found.
+2023-08-15 21:05:40 - [Line 463] Using session: /org/freedesktop/login1/session/_31
+2023-08-15 21:05:40 - [Line 223] Got sleep lock: 11
+2023-08-15 21:05:40 - [Line 621] Enable idle timeouts
+2023-08-15 21:05:40 - [Line 596] Register with timeout: 600000
+2023-08-15 21:05:40 - [Line 596] Register with timeout: 300000
+2023-08-15 21:10:44 - [Line 650] idle state
+2023-08-15 21:10:44 - [Line 146] Cmd exec swaylock -fF -c 00000 >> ./log/swaylock.log 2>&1
+2023-08-15 21:10:44 - [Line 172] Spawned process swaylock -fF -c 00000 >> ./log/swaylock.log 2>&1
+2023-08-15 21:10:44 - [Line 174] Blocking until process exits
+2023-08-15 21:10:44 - [Line 179] Process exit status: 0
+2023-08-15 21:15:44 - [Line 650] idle state
+2023-08-15 21:15:44 - [Line 146] Cmd exec swaymsg "output * power off"
+2023-08-15 21:15:44 - [Line 172] Spawned process swaymsg "output * power off"
+2023-08-15 21:15:44 - [Line 174] Blocking until process exits
+[
+  {
+    "success": true
+  }
+]
+2023-08-15 21:15:44 - [Line 179] Process exit status: 0
+2023-08-16 07:28:43 - [Line 347] PropertiesChanged signal received
+2023-08-16 07:28:43 - [Line 355] Got PropertyChanged: org.freedesktop.login1.Manager
+2023-08-16 07:28:43 - [Line 347] PropertiesChanged signal received
+2023-08-16 07:28:43 - [Line 355] Got PropertyChanged: org.freedesktop.login1.Manager
+2023-08-16 07:28:43 - [Line 373] Logind idle inhibitor not found
+2023-08-16 07:29:03 - [Line 347] PropertiesChanged signal received
+2023-08-16 07:29:03 - [Line 355] Got PropertyChanged: org.freedesktop.login1.Manager
+2023-08-16 07:29:03 - [Line 373] Logind idle inhibitor not found
+2023-08-16 07:29:03 - 

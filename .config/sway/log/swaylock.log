@@ -1,0 +1,4 @@
+2023-10-07 15:09:46 - [swaylock-1.7.2/main.c:1211] Parsing CLI Args
+2023-10-07 15:09:46 - [swaylock-1.7.2/main.c:1268] Using ext-session-lock-v1
+2023-10-07 15:09:46 - [swaylock-1.7.2/pam.c:88] Prepared to authorize user william
+2023-10-07 15:09:48 - [swaylock-1.7.2/comm.c:22] received pw check request
