@@ -1,0 +1,50 @@
+local/clipman 1.6.2-1
+    A simple clipboard manager for Wayland
+local/egl-wayland 2:1.1.12-1.1
+    EGLStream-based Wayland external platform
+local/grim 1.4.1-1.1
+    Screenshot utility for Wayland
+local/gtk-layer-shell 0.8.1-1
+    Library to create Wayland desktop components using the Layer Shell protocol
+local/lib32-wayland 1.22.0-1
+    A computer display server protocol
+local/libva 2.20.0-1.1
+    Video Acceleration (VA) API for Linux
+local/qt5-wayland 5.15.10+kde+r62-1.1 (qt qt5)
+    Provides APIs for Wayland
+local/slurp 1.4.0-1.1
+    Select a region in a Wayland compositor
+local/sway 1:1.8.1-1.1
+    Tiling Wayland compositor and replacement for the i3 window manager
+local/swaybg 1.2.0-1.1
+    Wallpaper tool for Wayland compositors
+local/swayidle 1.8.0-1.1
+    Idle management daemon for Wayland
+local/swaylock 1.7.2-1.1
+    Screen locker for Wayland
+local/waybar 0.9.22-1.1
+    Highly customizable Wayland bar for Sway and Wlroots based compositors
+local/wayland 1.22.0-1.1
+    A computer display server protocol
+local/wayland-protocols 1.32-1
+    Specifications of extended Wayland protocols
+local/wev 1.0.0-12
+    tool for debugging wayland events, similar to xev
+local/wl-clipboard 1:2.2.1-1.1
+    Command-line copy/paste utilities for Wayland
+local/wlroots 0.16.2-2.1
+    Modular Wayland compositor library
+local/wofi 1.3-2.1
+    launcher for wlroots-based wayland compositors
+local/xorg-xwayland 23.2.1-1.1 (xorg)
+    run X clients under wayland
+local/sway 1:1.8.1-1.1
+    Tiling Wayland compositor and replacement for the i3 window manager
+local/swaybg 1.2.0-1.1
+    Wallpaper tool for Wayland compositors
+local/swayidle 1.8.0-1.1
+    Idle management daemon for Wayland
+local/swaylock 1.7.2-1.1
+    Screen locker for Wayland
+local/waybar 0.9.22-1.1
+    Highly customizable Wayland bar for Sway and Wlroots based compositors
