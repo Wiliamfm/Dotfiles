@@ -7,6 +7,7 @@ XTerm.vt100.locale: false
 XTerm.vt100.utf8: true
 !See /usr/shared/fonts
 XTerm.vt100.faceName: JetBrainsMonoNL Nerd Font Mono:size=8
+xterm*font: *-fixed-*-*-*-40-*
 XTerm.vt100.metaSendsEscape: true
 XTerm.vt100.saveLines: 4096
 Xterm.vt100.translations: #override \n\

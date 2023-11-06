@@ -34,7 +34,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use pactl to adjust volume in PulseAudio.
+#bindsym $mod+F<F11><F11><S-D-s>
+bindsym $mod+F11 exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
@@ -184,11 +186,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #Custom bar
-exec --no-startup-id killall polybar
-exec --no-startup-id polybar -r
+#exec --no-startup-id killall polybar &
+#exec --no-startup-id polybar -r &
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#        status_command i3status
-#}
+bar {
+        font pango: Font Awesome 10
+        position top
+        status_command i3status-rs
+}
