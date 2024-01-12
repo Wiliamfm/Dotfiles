@@ -5,7 +5,7 @@ vim.opt.incsearch = true
 
 --Displayin text
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 999
 vim.opt.wrap= true
 vim.opt.breakindent= true
 vim.opt.number = true

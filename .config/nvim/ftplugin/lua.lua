@@ -7,4 +7,6 @@ local clientId= vim.lsp.start({
   )[1])
 })
 
---vim.lsp.buf_attach_client(0, clientId)
+vim.lsp.buf_attach_client(0, clientId)
+
+print('Client ' ..clientId.. ' Attached to current buffer')
