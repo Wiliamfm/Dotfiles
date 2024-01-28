@@ -1,0 +1,31 @@
+#
+# ~/.bashrc
+#
+
+[[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls -a --color=auto'
+alias grep='grep --color=auto'
+PS1='[\u@\h \W]\$ '
+
+alias vim="nvim"
+
+#echo 81 > /sys/class/power_supply/BAT0/charge_control_end_threshold
+export EDITOR=nvim
+alias dotfiles_repo='/usr/bin/git --git-dir=/home/william/Documents/dotfiles --work-tree=/home/william'
+export GITHUB=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
+#tw: This stands for "other writable". Files that are not owned by the current user but are still writable by other users.
+LS_COLORS=$LS_COLORS:'tw=0;35:'
+#ow: This stands for "own writable". Files that are owned by the current user and are writable.
+LS_COLORS=$LS_COLORS:'ow=0;36:' ; export LS_COLORS
+
+#Remove all identical commands in the bash's history.
+export HISTCONTROL=erasedups
+
+
+
+
+[[ ${BLE_VERSION-} ]] && ble-attach
