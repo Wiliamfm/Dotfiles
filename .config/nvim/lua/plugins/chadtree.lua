@@ -9,7 +9,7 @@ local chadtree = {
 	branch = 'chad',
 	build = 'python3 -m chadtree deps',
 	keys = {
-		{'<leader>e', '<cmd>CHADopen<cr>'}
+		{'<leader><S-e>', '<cmd>CHADopen<cr>'}
 	},
   config = function()
     --vim.api.nvim_set_var('chadtree_settings', settings)

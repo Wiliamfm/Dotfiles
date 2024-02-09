@@ -1,10 +1,13 @@
--- LSP config for Lua
+-- LSP config for Zig
 local clientId = vim.lsp.start({
-  name = 'lua-language-server',
-  cmd = { 'lua-language-server' },
+  name = 'zig-language-server',
+  cmd = { 'zls' },
   root_dir = vim.fs.dirname(vim.fs.find(
-    { 'init.lua' }, { upward = true }
+    { 'zig.json', 'build.zig', '.git' }, { upward = true }
   )[1]),
+  on_attach = function(client, bufnr)
+    print('LSP ' .. client.name .. ' attached to bufnr: ' .. bufnr .. ' : ' .. buf_is_attached(0, clientId))
+  end,
 })
 
 vim.lsp.buf_attach_client(0, clientId)
