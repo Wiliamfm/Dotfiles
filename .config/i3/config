@@ -19,7 +19,7 @@ font pango:monospace 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-exec --no-startup-id /usr/bin/wired &
+exec --no-startup-id /usr/bin/dunst &
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -37,13 +37,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 #bindsym $mod+F<F11><F11><S-D-s>
-bindsym $mod+F11 exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id sh /home/william/Documents/dotfiles/.config/i3/volume.sh 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id sh /home/william/Documents/dotfiles/.config/i3/volume.sh 5%-
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
