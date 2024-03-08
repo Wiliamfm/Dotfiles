@@ -326,7 +326,7 @@
 
 #bleopt accept_line_threshold=5
 
-ble-bind C-v -
+ble-bind C-S-v -
 
 
 ## The following option controls the behavior when the number of characters
@@ -489,7 +489,7 @@ ble-bind C-v -
 ## specifies that the keymap should be automatically selected from "emacs" or
 ## "vi" according to the current readline state "set -o emacs" or "set -o vi".
 
-bleopt default_keymap=vi
+bleopt default_keymap=
 
 
 ## The following setting controls the treatment of isolated ESCs.  The value
