@@ -29,3 +29,7 @@ export HISTCONTROL=erasedups
 
 
 [[ ${BLE_VERSION-} ]] && ble-attach
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
