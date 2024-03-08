@@ -35,6 +35,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client.server_capabilities.hoverProvider then
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
     end
+    if client.server_capabilities.codeActionProvider then
+      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = args.buf })
+    end
   end,
 })
 return M
