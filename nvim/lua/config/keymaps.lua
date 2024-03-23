@@ -11,3 +11,8 @@ vim.keymap.set("n", "<leader>t", ":tab split<CR>")
 vim.keymap.set("n", "<leader>tc", ":tab close<CR>")
 vim.keymap.set("n", "<leader><TAB>", ":tabnext<CR>")
 vim.keymap.set("n", "<leader><S-TAB>", ":tabprevious<CR>")
+
+-- Diagnostics
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {desc = "Open diagnostic"})
+vim.keymap.set("n", "<leader>gd", vim.diagnostic.goto_next, {desc = "Go to next diagnostic"})
+vim.keymap.set("n", "<leader>gD", vim.diagnostic.goto_prev, {desc = "Go to prev diagnostic"})
