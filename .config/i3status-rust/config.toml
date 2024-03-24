@@ -7,7 +7,7 @@ idle_bg = "#123456"
 idle_fg = "#abcdef"
 
 [icons]
-icons = "awesome6"
+icons = "material-nf"
 
 # BLOCKS
 
@@ -22,21 +22,22 @@ alert_unit = "GB"
 interval = 20
 warning = 20.0
 alert = 10.0
-format = " $icon root: $available.eng(w:2) "
+format = "$icon root: $available.eng(w:2) "
 
 [[block]]
 block = "memory"
-icons_format = "{icon}  "
-format = " $icon $mem_total_used_percents.eng(w:2) ($mem_avail ) "
-format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
+icons_format = "{icon}"
+format = "$icon $mem_total_used_percents.eng(w:2) ($mem_avail ) "
+format_alt = "$icon_swap $swap_used_percents.eng(w:2) "
 
 [[block]]
 block = "net"
-format = "$icon   $signal_strength -- $ssid -- $ip"
-format_alt = " $icon ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K) "
+format = "$icon $signal_strength -- $ssid -- $ip"
+format_alt = "$icon ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K) "
 
 [[block]]
 block = "sound"
+driver = "alsa"
 [[block.click]]
 button = "left"
 cmd = "pavucontrol"
@@ -52,8 +53,8 @@ backlight = [
 
 [[block]]
 block = "battery"
-format = "$icon $percentage {$time |}"
-icons_format = "{icon}    "
+format = "$icon  $percentage {$time |}"
+icons_format = "{icon}"
 
 [[block]]
 block = "time"
