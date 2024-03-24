@@ -40,4 +40,32 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
+
+--vim.diagnostic.config({
+--  virtual_text = {
+--    prefix = '●',
+--    source = true
+--  },
+--})
+
+--vim.diagnostic.open_flaot({
+--  max_width= 100,
+--  max_height= 200,
+--  header= "CUSTOM HEADER BITCH",
+--  source= true
+--})
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    signs = true,
+    virtual_text = false,
+    float = {
+        show_header = true,
+        source = 'if_many',
+        border = 'rounded',
+    },
+  }
+)
+
 return M

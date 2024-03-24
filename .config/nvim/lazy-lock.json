@@ -1,7 +1,8 @@
 {
   "autoclose.nvim": { "branch": "main", "commit": "37e11589aac55b0e8810dc5865f898f9cb36fef6" },
   "catppuccin": { "branch": "main", "commit": "c2034f7b549152e5cc757820426341ea5000bc7a" },
-  "chadtree": { "branch": "chad", "commit": "713d374382398df12816b3aa8de5462e29266d8a" },
+  "chadtree": { "branch": "chad", "commit": "d2afbb28ed1b6de119fe7c1d4fe248da0819b4d8" },
   "codeium.vim": { "branch": "main", "commit": "fd440cd718742daab162241c5bd5857cd92f5f72" },
-  "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" }
+  "lazy.nvim": { "branch": "main", "commit": "83493db50a434a4c5c648faf41e2ead80f96e478" },
+  "mason.nvim": { "branch": "main", "commit": "3b5068f0fc565f337d67a2d315d935f574848ee7" }
 }

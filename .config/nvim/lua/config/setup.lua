@@ -1,4 +1,9 @@
+--Global options
+
+vim.g.netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
+
 --Check :options for details
+
 -- Moving around, searching and patterns
 
 vim.opt.incsearch = true
@@ -9,7 +14,7 @@ vim.opt.scrolloff = 999
 vim.opt.wrap= true
 vim.opt.breakindent= true
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 -- Syntax, highlighting and spelling
 
