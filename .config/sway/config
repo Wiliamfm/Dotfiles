@@ -214,18 +214,18 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    #position top
-
-    ## When the status_command prints a new line to stdout, swaybar updates.
-    ## The default just shows the current date and time.
-    #status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-
-    #colors {
-    #    statusline #ffffff
-    #    background #323232
-    #    inactive_workspace #32323200 #32323200 #5c5c5c
-    #}
-		bar swaybar_command waybar
+    font pango:0xProto Nerd Font
+    position top
+    status_command i3status-rs
+    colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
 }
 
 ### Custome keybindings
@@ -237,8 +237,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 
 bindsym F11 exec grim -g "$(slurp)" - | wl-copy
-bindsym Super_L+F11 exec kitty
 
-#exec wl-paste -t text --watch clipman --no-persist store
+exec wl-paste -t text --watch clipman --no-persist store
 
 include /etc/sway/config.d/*
