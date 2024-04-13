@@ -13,7 +13,7 @@ PS1='[\u@\h \W]\$ '
 
 alias vim="nvim"
 
-#echo 81 > /sys/class/power_supply/BAT0/charge_control_end_threshold
+echo 81 > /sys/class/power_supply/BAT0/charge_control_end_threshold
 export EDITOR=nvim
 alias dotfiles_repo='/usr/bin/git --git-dir=/home/william/Documents/dotfiles --work-tree=/home/william'
 export GITHUB=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
@@ -25,6 +25,8 @@ LS_COLORS=$LS_COLORS:'ow=0;36:' ; export LS_COLORS
 #Remove all identical commands in the bash's history.
 export HISTCONTROL=erasedups
 
+eval "$(zoxide init --cmd cd bash)"
+
 
 
 
@@ -33,3 +35,7 @@ export HISTCONTROL=erasedups
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
