@@ -12,6 +12,7 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 alias vim="nvim"
+alias wl-recorder='wf-recorder -g "$(slurp)" -f recording.mp4'
 
 echo 81 > /sys/class/power_supply/BAT0/charge_control_end_threshold
 export EDITOR=nvim
@@ -26,7 +27,6 @@ LS_COLORS=$LS_COLORS:'ow=0;36:' ; export LS_COLORS
 export HISTCONTROL=erasedups
 
 eval "$(zoxide init --cmd cd bash)"
-
 
 
 
