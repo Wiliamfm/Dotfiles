@@ -1,3 +1,11 @@
 sway/log
 sway/backgrounds
 nvim/lazy-lock.json
+
+#Applications configs
+.config/Code/
+.config/microsoft-edge/
+.config/obsidian/
+.config/go/
+.config/pulse/
+.config/Postman/
