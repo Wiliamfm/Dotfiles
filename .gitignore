@@ -9,3 +9,6 @@ nvim/lazy-lock.json
 .config/go/
 .config/pulse/
 .config/Postman/
+.config/VirtualBox/
+.config/nomacs/
+.config/wireshark/
