@@ -1,4 +1,6 @@
 icons_format = "{icon}"
+error_format = "$short_error_message | X"
+error_fullscreen_format = "$full_error_message"
 
 [theme]
 theme = "solarized-dark"
@@ -37,7 +39,7 @@ format_alt = "$icon ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed
 
 [[block]]
 block = "sound"
-driver = "alsa"
+driver = "auto"
 [[block.click]]
 button = "left"
 cmd = "pavucontrol"
