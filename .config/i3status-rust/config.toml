@@ -3,7 +3,7 @@ error_format = "$short_error_message | X"
 error_fullscreen_format = "$full_error_message"
 
 [theme]
-theme = "solarized-dark"
+theme = "dracula"
 [theme.overrides]
 idle_bg = "#123456"
 idle_fg = "#abcdef"
@@ -56,7 +56,7 @@ backlight = [
 [[block]]
 block = "battery"
 format = "$icon  $percentage {$time |}"
-icons_format = "{icon}"
+full_format = "$icon  $percentage"
 
 [[block]]
 block = "time"
