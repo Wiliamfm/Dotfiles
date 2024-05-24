@@ -12,3 +12,7 @@ nvim/lazy-lock.json
 .config/VirtualBox/
 .config/nomacs/
 .config/wireshark/
+.config/libreoffice/
+.config/vifm/
+.config/dconf/
+.config/QtProject.conf
