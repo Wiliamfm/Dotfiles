@@ -14,7 +14,6 @@ PS1='[\u@\h \W]\$ '
 alias vim="nvim"
 alias wl-recorder='wf-recorder -g "$(slurp)" -f recording.mp4'
 
-echo 81 > /sys/class/power_supply/BAT0/charge_control_end_threshold
 export EDITOR=nvim
 alias dotfiles_repo='/usr/bin/git --git-dir=/home/william/Documents/dotfiles --work-tree=/home/william'
 export GITHUB=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
