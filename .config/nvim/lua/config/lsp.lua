@@ -1,3 +1,7 @@
+local M = {}
+
+M.format_on_save = false
+
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   vim.lsp.handlers.hover,
   { border = 'rounded' }
@@ -8,87 +12,175 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   { border = 'rounded' }
 )
 
-local get_on_list_text = function(items)
-  local text = {}
-  for key, value in ipairs(items) do
-    --print(key)
-    if (key == "text") then
-      --print(value)
-      table.insert(text, value)
-    end
+M.print_msg = function(msg, prefix)
+  local prefix = prefix or "LSP"
+  print(vim.inspect(prefix .. ": " .. msg))
+end
+
+M.start_server = function(file_types, name, cmd, root_pattern)
+  local root_dir = vim.fs.root(0, root_pattern)
+  if(root_dir == nil) then
+    M.print_msg("No root directory found.", "LSP[Error]")
+    return
   end
-  return text
+  local prefix = "LSP[" .. name .. "]"
+  M.print_msg("Starting at " .. root_dir, prefix)
+  M.file_types = file_types
+  M.name = name
+  M.cmd = cmd
+  M.root_dir = root_dir
+
+  M.client_id = vim.lsp.start({
+    name = name,
+    cmd = cmd,
+    root_dir = root_dir,
+    on_attach = function(client, bufnr)
+      M.print_msg(client.id .. " attached to buffer: " .. bufnr, prefix)
+    end
+  })
+end
+
+M.lsp_restart = function()
+  if(M.client_id == nil or M.name == nil) then
+    M.print_msg("Could not find client id neither name.", "LSP[Error]")
+    return
+  end
+  local prefix = "LSP[" .. M.name .. "]" .. M.client_id
+  M.print_msg("Restarting.", prefix)
+  vim.lsp.stop_client(M.client_id)
+  M.start_server(M.file_types, M.name, M.cmd, M.root_dir)
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
+    local prefix = "LSP[" .. client.name .. "]"
 
-    local function on_list(options)
-      for key, value in ipairs(options) do
-        print("Key: " .. key .. " Value: " .. value)
-      end
-      local buf = vim.api.nvim_create_buf(false, false)
-      --      vim.api.nvim_buf_set_lines(buf, 0, -1, false, get_on_list_text(options.items))
-      --      vim.api.nvim_open_win(buf, true, {
-      --        relative = 'win',
-      --        row = 5,
-      --        col = 5,
-      --        width = 50,
-      --        height = 10,
-      --        border = 'rounded',
-      --        title = options.title,
-      --        title_pos = 'center',
-      --      })
-    end
+    --config
+    vim.lsp.set_log_level("warn")
 
-    if client.server_capabilities.hoverProvider then
+    if client.supports_method("textDocument/hover") then
+      -- Nvim default keymap.
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
     end
-    if client.server_capabilities.documentFormattingProvider then
-      vim.keymap.set('n', '<leader>cf', function()
+
+    if client.supports_method("textDocument/formatting") or true then
+      local lsp_format = function()
+        M.print_msg("Formatting", prefix)
         vim.lsp.buf.format({
+          timeout_ms = 5000,
           filter = function(c)
             if (c.name == "tsserver") then
-              print("tsserver formatting disabled")
+              M.print_msg("tsserver formatting disabled.", prefix)
               return false
             end
-            return c.name ~= "tsserver"
+            return true
           end
         })
-      end, { buffer = args.buf, desc = "LSP:Format" })
+      end
+
+      vim.keymap.set("n", "ltf", function()
+        M.format_on_save = not M.format_on_save
+        M.print_msg("Toggling format on save to " .. tostring(M.format_on_save) .. ".", prefix)
+        local auId = vim.api.nvim_create_augroup("LspFormatting", {
+          clear = true
+        })
+        if (M.format_on_save) then
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            group = auId,
+            buffer = args.buf,
+            callback = lsp_format
+          })
+        end
+      end, { buffer = args.buf, nowait = true, noremap = true, desc = "LSP:Toggle Format." })
+
+      vim.keymap.set('n', "lf", lsp_format, { buffer = args.buf, nowait = true, noremap = true, desc = "LSP:Format" })
     end
-    if client.server_capabilities.referencesProvider then
-      vim.keymap.set('n', 'gr', function()
-        vim.lsp.buf.references(nil, { on_list = on_list })
+
+    if client.supports_method("textDocument/references") then
+      vim.keymap.set('n', 'lr', function()
+        M.print_msg("Searching references.", prefix)
+        vim.lsp.buf.references()
       end, { buffer = args.buf, desc = "LSP:References" })
     end
-    if client.server_capabilities.implementationProvider then
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = args.buf, desc = "LSP:Implementation" })
+
+    if client.supports_method("textDocument/implementation*") then
+      vim.keymap.set('n', 'li', function()
+        M.print_msg("Searching Implementations.", prefix)
+        vim.lsp.buf.implementation()
+      end, { buffer = args.buf, noremap = true, nowait = true, desc = "LSP:Implementation" })
     end
-    if client.server_capabilities.codeActionProvider then
-      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = args.buf, desc = "LSP:Code Action" })
+
+    if true or client.supports_method("textDocument/codeAction") then
+      vim.keymap.set('n', "la", function()
+        M.print_msg("Code Action.", prefix)
+        vim.lsp.buf.code_action()
+      end, { buffer = args.buf, nowait = true, desc = "LSP:Code Action" })
     end
-    if client.server_capabilities.definitionProvider then
-      vim.keymap.set('n', 'gd', function()
-        print("LSP:Definition")
-        vim.lsp.buf.definition { on_list = on_list }
-      end, { buffer = args.buf, desc = "LSP:Definition" })
+
+    if true or client.supports_method("textDocument/definition") then
+      vim.keymap.set('n', 'ld', function()
+        M.print_msg("Got to definition.", prefix)
+        vim.lsp.buf.definition()
+      end, { buffer = args.buf, nowait = true, desc = "LSP:Definition" })
     end
-    if client.server_capabilities.renameProvider then
-      vim.keymap.set('n', '<leader>cr', function()
+
+    if true or client.supports_method("textDocument/rename") then
+      vim.keymap.set('n', "lr", function()
+        M.print_msg("Rename.", prefix)
         vim.lsp.buf.rename()
-      end, { buffer = args.buf, desc = "LSP:Rename" })
+      end, { buffer = args.buf, nowait = true, desc = "LSP:Rename" })
     end
-    if client.server_capabilities.typeDefinitionProvider then
-      vim.keymap.set('n', 'gD', function()
+
+    if true or client.supports_method("textDocument/typeDefinition*") then
+      vim.keymap.set('n', "lD", function()
+        M.print_msg("Go to type definition.", prefix)
         vim.lsp.buf.type_definition()
       end, { buffer = args.buf, desc = "LSP:Type Definition" })
     end
-    if client.server_capabilities.signatureHelpProvider then
-      vim.keymap.set('n', '<leader>K', function()
+
+    if client.supports_method("textDocument/signatureHelp") then
+      vim.keymap.set('n', "ls", function()
+        M.print_msg("Signature Help.", prefix)
         vim.lsp.buf.signature_help()
       end, { buffer = args.buf, desc = "LSP:Signature Help" })
     end
+
+    if client.supports_method("textDocument/inlayHint") then
+      M.print_msg("Enable inlay hints.", prefix)
+      vim.lsp.inlay_hint.enable(true)
+      vim.keymap.set("n", "<leader>.", function()
+        local hint = vim.lsp.inlay_hint.get({ bufnr = args.buf })
+        for k, v in pairs(hint) do
+          vim.inspect(k)
+          vim.inspect(v)
+        end
+        local resp = client.request_sync('inlayHint/resolve', hint.inlay_hint, 100, 0)
+        print(vim.inspect(hint))
+        print(vim.inspect(resp, prefix))
+      end, { buffer = args.buf, nowait = true, desc = "LSP: Trigger completion" })
+    end
+
+    if client.supports_method("textDocument/completion") then
+      M.print_msg("Enable completion.")
+      vim.lsp.completion.enable(true, M.client_id, args.buf)
+      vim.keymap.set("i", "<CTR>.", vim.lsp.completion.trigger, { buffer = args.buf, nowait = true, desc = "LSP: Trigger completion" })
+    end
+
+    vim.keymap.set('n', "<leader>ll", function() M.print_msg(vim.lsp.get_log_path(), prefix) end,
+      { buffer = args.buf, nowait = true, desc = "LSP:Log Path." })
+    vim.keymap.set('n', "<leader>tr", function() vim.lsp.codelens.run() end,
+      { buffer = args.buf, nowait = true, desc = "LSP:Log Path" })
+    vim.keymap.set('n', "<leader>tt", function() vim.lsp.codelens.get(args.buf) end,
+      { buffer = args.buf, nowait = true, desc = "LSP:Log Path" })
   end,
 })
+
+--vim.api.nvim_create_autocmd('FileType', {
+--  pattern = file_types,
+--  callback = function(event)
+--    start_server
+--  end
+--})
+
+return M
