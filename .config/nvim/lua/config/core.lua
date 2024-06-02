@@ -1,5 +1,3 @@
-local M = {}
-
 -- re map netrw keys.
 vim.api.nvim_create_autocmd('filetype', {
   pattern = 'netrw',
@@ -28,23 +26,3 @@ vim.diagnostic.config({
     },
   },
 })
-
-M.lsp_config = function(name, cmd, root_dir)
-  local dir = vim.fs.dirname(vim.fs.find(
-    root_dir,
-    { upward = true, stop = vim.loop.os_homedir(), path = vim.fs.dirname(vim.api.nvim_buf_get_name(0))}
-  )[1])
-  local clientId = vim.lsp.start({
-    name = name,
-    cmd = cmd,
-    root_dir = dir,
-    on_attach = function(client, bufnr)
-      print("LSP " .. client.name .. " attached to buffer " .. bufnr)
-    end
-  })
-  if (clientId ~= nil) then
-    print("lsp client id: " .. clientId .. " lsp dir: " .. dir)
-  end
-end
-
-return M
