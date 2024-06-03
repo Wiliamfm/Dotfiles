@@ -13,17 +13,24 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 )
 
 M.print_msg = function(msg, prefix)
-  local prefix = prefix or "LSP"
+  prefix = prefix or "LSP"
   print(vim.inspect(prefix .. ": " .. msg))
 end
 
-M.start_server = function(file_types, name, cmd, root_pattern)
+--TODO: Remove file_types -> not used.
+M.start_server = function(file_types, name, cmd, root_pattern, use_mason)
   local root_dir = vim.fs.root(0, root_pattern)
   if(root_dir == nil) then
     M.print_msg("No root directory found.", "LSP[Error]")
     return
   end
   local prefix = "LSP[" .. name .. "]"
+
+  if(use_mason) then
+    M.print_msg("Enabling mason.", prefix)
+    cmd[1] = vim.fs.joinpath(vim.fn.stdpath("data"), "/mason/bin", cmd[1] )
+  end
+
   M.print_msg("Starting at " .. root_dir, prefix)
   M.file_types = file_types
   M.name = name
@@ -79,7 +86,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         })
       end
 
-      vim.keymap.set("n", "ltf", function()
+      vim.keymap.set("n", "<leader>ltf", function()
         M.format_on_save = not M.format_on_save
         M.print_msg("Toggling format on save to " .. tostring(M.format_on_save) .. ".", prefix)
         local auId = vim.api.nvim_create_augroup("LspFormatting", {
@@ -94,53 +101,53 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
       end, { buffer = args.buf, nowait = true, noremap = true, desc = "LSP:Toggle Format." })
 
-      vim.keymap.set('n', "lf", lsp_format, { buffer = args.buf, nowait = true, noremap = true, desc = "LSP:Format" })
+      vim.keymap.set('n', "<leader>lf", lsp_format, { buffer = args.buf, nowait = true, noremap = true, desc = "LSP:Format" })
     end
 
     if client.supports_method("textDocument/references") then
-      vim.keymap.set('n', 'lr', function()
+      vim.keymap.set('n', '<leader>lr', function()
         M.print_msg("Searching references.", prefix)
         vim.lsp.buf.references()
       end, { buffer = args.buf, desc = "LSP:References" })
     end
 
     if client.supports_method("textDocument/implementation*") then
-      vim.keymap.set('n', 'li', function()
+      vim.keymap.set('n', '<leader>li', function()
         M.print_msg("Searching Implementations.", prefix)
         vim.lsp.buf.implementation()
       end, { buffer = args.buf, noremap = true, nowait = true, desc = "LSP:Implementation" })
     end
 
     if true or client.supports_method("textDocument/codeAction") then
-      vim.keymap.set('n', "la", function()
+      vim.keymap.set('n', "<leader>la", function()
         M.print_msg("Code Action.", prefix)
         vim.lsp.buf.code_action()
       end, { buffer = args.buf, nowait = true, desc = "LSP:Code Action" })
     end
 
     if true or client.supports_method("textDocument/definition") then
-      vim.keymap.set('n', 'ld', function()
+      vim.keymap.set('n', '<leader>ld', function()
         M.print_msg("Got to definition.", prefix)
         vim.lsp.buf.definition()
       end, { buffer = args.buf, nowait = true, desc = "LSP:Definition" })
     end
 
     if true or client.supports_method("textDocument/rename") then
-      vim.keymap.set('n', "lr", function()
+      vim.keymap.set('n', "<leader>lrs", function()
         M.print_msg("Rename.", prefix)
         vim.lsp.buf.rename()
       end, { buffer = args.buf, nowait = true, desc = "LSP:Rename" })
     end
 
     if true or client.supports_method("textDocument/typeDefinition*") then
-      vim.keymap.set('n', "lD", function()
+      vim.keymap.set('n', "<leader>lD", function()
         M.print_msg("Go to type definition.", prefix)
         vim.lsp.buf.type_definition()
       end, { buffer = args.buf, desc = "LSP:Type Definition" })
     end
 
     if client.supports_method("textDocument/signatureHelp") then
-      vim.keymap.set('n', "ls", function()
+      vim.keymap.set('n', "<leader>ls", function()
         M.print_msg("Signature Help.", prefix)
         vim.lsp.buf.signature_help()
       end, { buffer = args.buf, desc = "LSP:Signature Help" })
