@@ -28,7 +28,7 @@ M.start_server = function(file_types, name, cmd, root_pattern, use_mason)
 
   if(use_mason) then
     M.print_msg("Enabling mason.", prefix)
-    cmd[1] = vim.fs.joinpath(vim.fn.stdpath("data"), "/mason/bin", cmd[1] )
+    cmd[1] = vim.fn.exepath(cmd[1])
   end
 
   M.print_msg("Starting at " .. root_dir, prefix)
