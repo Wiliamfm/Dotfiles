@@ -1,3 +1,8 @@
 -- LSP config for Lua
-local core= require("config.core")
-core.lsp_config("lua_ls", {"lua-language-server"}, {"init.lua"})
+local lsp = require("config.lsp")
+lsp.start_server(
+  "lua",
+  "lua_ls",
+  { "lua-language-server"},
+  "init.lua"
+)
