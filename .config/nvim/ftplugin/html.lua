@@ -1,5 +1,10 @@
 --LSP for HTML
-local core = require("config.core")
-core.lsp_config("angular-language-server",
+local lsp = require("config.lsp")
+
+lsp.start_server(
+  "html",
+  "angular-language-server",
   { "ngserver", "--stdio", "--tsProbeLocations", "../../../../node_modules", "--ngProbeLocations", "../../../../node_modules" },
-  { ".git", "package.json", "tsconfig.json", "tsconfig.node.json" })
+  { ".git", "package.json", "tsconfig.json", "tsconfig.node.json" },
+  true
+)
