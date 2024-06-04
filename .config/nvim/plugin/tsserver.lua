@@ -10,8 +10,8 @@ vim.api.nvim_create_autocmd("FileType", {
       { "typescript-language-server", "--stdio" },
       function(name)
         return name:match("package.json") or name:match("tsconfig.json") or name:match("angular.json")
-      end
-    --true
+      end,
+      true
     )
   end
 })
