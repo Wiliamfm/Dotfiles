@@ -176,10 +176,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     vim.keymap.set('n', "<leader>ll", function() M.print_msg(vim.lsp.get_log_path(), prefix) end,
       { buffer = args.buf, nowait = true, desc = "LSP:Log Path." })
-    vim.keymap.set('n', "<leader>tr", function() vim.lsp.codelens.run() end,
+    vim.keymap.set('n', "<leader>te", function() vim.lsp.codelens.run() end,
       { buffer = args.buf, nowait = true, desc = "LSP:Log Path" })
     vim.keymap.set('n', "<leader>tt", function() vim.lsp.codelens.get(args.buf) end,
       { buffer = args.buf, nowait = true, desc = "LSP:Log Path" })
+    vim.keymap.set("n", "<leader>tr", M.lsp_restart, { buffer = args.buf, nowait = true, desc = "LSP: Restart" })
   end,
 })
 
