@@ -1,7 +1,7 @@
 local lsp = require("config.lsp")
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html" },
+  pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "htmlangular" },
   desc = "Start tsserver",
   callback = function()
     lsp.start_server(
