@@ -4,5 +4,6 @@ lsp.start_server(
   "lua",
   "lua_ls",
   { "lua-language-server"},
-  "init.lua"
+  "init.lua",
+  true
 )
