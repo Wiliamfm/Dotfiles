@@ -27,7 +27,7 @@ export HISTCONTROL=erasedups
 
 eval "$(zoxide init --cmd cd bash)"
 
-
+export PATH="$PATH:$HOME/.dotnet/tools/"
 
 [[ ${BLE_VERSION-} ]] && ble-attach
 
