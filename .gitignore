@@ -16,3 +16,4 @@ nvim/lazy-lock.json
 .config/vifm/
 .config/dconf/
 .config/QtProject.conf
+.config/nvim/lazy-lock.json
