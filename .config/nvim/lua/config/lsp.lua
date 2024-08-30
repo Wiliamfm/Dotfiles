@@ -20,13 +20,13 @@ end
 --TODO: Remove file_types -> not used.
 M.start_server = function(file_types, name, cmd, root_pattern, use_mason)
   local root_dir = vim.fs.root(0, root_pattern)
-  if(root_dir == nil) then
+  if (root_dir == nil) then
     M.print_msg("No root directory found.", "LSP[Error]")
     return
   end
   local prefix = "LSP[" .. name .. "]"
 
-  if(use_mason) then
+  if (use_mason) then
     M.print_msg("Enabling mason.", prefix)
     cmd[1] = vim.fn.exepath(cmd[1])
   end
@@ -48,7 +48,7 @@ M.start_server = function(file_types, name, cmd, root_pattern, use_mason)
 end
 
 M.lsp_restart = function()
-  if(M.client_id == nil or M.name == nil) then
+  if (M.client_id == nil or M.name == nil) then
     M.print_msg("Could not find client id neither name.", "LSP[Error]")
     return
   end
@@ -101,7 +101,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
       end, { buffer = args.buf, nowait = true, noremap = true, desc = "LSP:Toggle Format." })
 
-      vim.keymap.set('n', "<leader>lf", lsp_format, { buffer = args.buf, nowait = true, noremap = true, desc = "LSP:Format" })
+      vim.keymap.set('n', "<leader>lf", lsp_format,
+        { buffer = args.buf, nowait = true, noremap = true, desc = "LSP:Format" })
     end
 
     if client.supports_method("textDocument/references") then
@@ -169,9 +170,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if client.supports_method("textDocument/completion") then
-      M.print_msg("Enable completion.")
-      vim.lsp.completion.enable(true, M.client_id, args.buf)
-      vim.keymap.set("i", "<CTR>.", vim.lsp.completion.trigger, { buffer = args.buf, nowait = true, desc = "LSP: Trigger completion" })
+      M.print_msg("Enable completion." .. vim.version().minor)
+      if (vim.version().minor < 11) then
+        vim.keymap.set("i", "<CTR>.", vim.lsp.buf.completion,
+          { buffer = args.buf, nowait = true, desc = "LSP: Trigger completion" })
+      else
+        vim.lsp.completion.enable(true, M.client_id, args.buf)
+        vim.keymap.set("i", "<CTR>.", vim.lsp.completion.trigger,
+          { buffer = args.buf, nowait = true, desc = "LSP: Trigger completion" })
+      end
     end
 
     vim.keymap.set('n', "<leader>ll", function() M.print_msg(vim.lsp.get_log_path(), prefix) end,
