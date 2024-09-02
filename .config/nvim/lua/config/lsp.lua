@@ -181,6 +181,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end
     end
 
+    --TODO: Make this keymap open lsp log file in a new tab | window.
     vim.keymap.set('n', "<leader>ll", function() M.print_msg(vim.lsp.get_log_path(), prefix) end,
       { buffer = args.buf, nowait = true, desc = "LSP:Log Path." })
     vim.keymap.set('n', "<leader>te", function() vim.lsp.codelens.run() end,
