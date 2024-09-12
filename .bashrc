@@ -11,7 +11,7 @@ alias ls='ls -a --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
-alias vim="nvim"
+alias v="nvim"
 alias wl-recorder='wf-recorder -g "$(slurp)" -f recording.mp4'
 
 export EDITOR=nvim
