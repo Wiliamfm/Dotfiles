@@ -21,6 +21,8 @@ vim.opt.relativenumber = true
 vim.opt.hlsearch = true
 vim.opt.termguicolors = true
 vim.opt.spell= false
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 
 -- Selecting text
 
