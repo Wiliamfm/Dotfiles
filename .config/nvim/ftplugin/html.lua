@@ -1,10 +1,11 @@
 --LSP for HTML
 local lsp = require("config.lsp")
+local cwd = vim.fn.getcwd() .. "/node_modules"
 
 lsp.start_server(
   "html",
   "angular-language-server",
-  { "ngserver", "--stdio", "--tsProbeLocations", "./node_modeules" , "--ngProbeLocations", "./node_modules" },
-  { ".git", "package.json", "tsconfig.json", "tsconfig.node.json" },
+  { "ngserver", "--stdio", "--tsProbeLocations", cwd, "--ngProbeLocations", cwd },
+  { "angular.json" },
   true
 )
