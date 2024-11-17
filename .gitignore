@@ -17,3 +17,7 @@ nvim/lazy-lock.json
 .config/dconf/
 .config/QtProject.conf
 .config/nvim/lazy-lock.json
+.config/GIMP/2.10
+.config/gtk-2.0
+.config/remmina
+.config/vlc
