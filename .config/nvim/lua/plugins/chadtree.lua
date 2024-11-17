@@ -6,6 +6,7 @@ local settings = {
 
 local chadtree = {
 	'ms-jpq/chadtree',
+  enabled = false,
 	branch = 'chad',
 	build = 'python3 -m chadtree deps',
 	keys = {
