@@ -21,3 +21,4 @@ nvim/lazy-lock.json
 .config/gtk-2.0
 .config/remmina
 .config/vlc
+.config/sway/log/wallpaper.log
