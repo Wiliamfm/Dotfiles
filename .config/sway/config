@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term kitty
+set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -24,8 +24,8 @@ bindsym $mod+Shift+d exec wofi --show=run --allow-images | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-exec bg_download.sh
-output * bg ./backgrounds/bing/wallpaper.jpg fill
+exec ~/.config/sway/bg_download.sh > ~/.config/sway/log/wallpaper.log 2>&1
+output * bg ~/.config/sway/backgrounds/bing/wallpaper.jpg fill
 #
 # Example configuration:
 #
@@ -41,7 +41,7 @@ exec swayidle -w \
 	timeout 300 'swaylock -fde -c 000000 > ~/.config/sway/log/swaylock.log 2>&1' \
   timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
   before-sleep 'swaylock -fde -c 000000 > ~/.config/sway/log/swaylock.log 2>&1'
-#
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
