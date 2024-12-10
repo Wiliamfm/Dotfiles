@@ -3,7 +3,7 @@ local lsp = require("config.lsp")
 lsp.start_server(
   "lua",
   "lua_ls",
-  { "lua-language-server"},
+  { "lua-language-server" },
   "init.lua",
   true
 )

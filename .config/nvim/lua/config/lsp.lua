@@ -14,7 +14,7 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 
 M.print_msg = function(msg, prefix)
   prefix = prefix or "LSP"
-  print(vim.inspect(prefix .. ": " .. msg))
+  print(vim.notify(prefix .. ": " .. msg))
 end
 
 --TODO: Remove file_types -> not used.
