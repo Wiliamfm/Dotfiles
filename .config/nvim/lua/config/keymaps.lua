@@ -1,4 +1,3 @@
-local lsp = require("config.lsp")
 vim.g.mapleader = " "
 
 -- Keymaps
@@ -19,6 +18,3 @@ vim.keymap.set("t", "<leader><Esc>", "<c-\\><c-n>", { desc = "Escape terminal", 
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open diagnostic" })
 vim.keymap.set("n", "<leader>gd", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 vim.keymap.set("n", "<leader>gD", vim.diagnostic.goto_prev, { desc = "Go to prev diagnostic" })
-
--- LSP
-vim.keymap.set("n", "<leader>lr", lsp.lsp_restart)

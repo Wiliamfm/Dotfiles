@@ -13,7 +13,7 @@ local function start_server()
 
   local clientId = vim.lsp.start({
     name = "powershell_editor_services",
-    cmd = {"powershell", "-NoLogo", "-NoProfile", "-Command", "C:\\Users\\PSF30\\Programs\\PowerShellEditorServices\\PowerShellEditorServices\\Start-EditorServices.ps1 -SessionDetailsPath ./session.json -Stdio"},
+    cmd = {"powershell", "-NoLogo", "-NoProfile", "-Command", "C:\\Users\\WilliamFonseca\\Downloads\\PowerShellEditorServices\\PowerShellEditorServices\\Start-EditorServices.ps1 -SessionDetailsPath ./session.json"},
     root_dir = root_dir,
     on_attach = function(client, bufnr)
       print("LSP " .. client.name .. " attached to buffer " .. bufnr)
