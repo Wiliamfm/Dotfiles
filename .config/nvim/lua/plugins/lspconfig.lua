@@ -1,5 +1,6 @@
 return {
   "neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
+  name = "lspconfig",
   lazy = false,            -- REQUIRED: tell lazy.nvim to start this plugin at startup
   dependencies = {
     { "williamboman/mason.nvim", config = true },
@@ -17,12 +18,28 @@ return {
 
     -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
     -- Need to **configure separately**
-    { 'ms-jpq/coq.thirdparty',   branch = "3p" }
-    -- - shell repl
-    -- - nvim lua api
-    -- - scientific calculator
-    -- - comment banner
-    -- - etc
+    {
+      'ms-jpq/coq.thirdparty',
+      branch = "3p",
+      init = function()
+        -- Can't both show ghost texts though
+        --vim.g.codeium_render = false
+      end,
+      config = function()
+        -- TODO: Check this, it's not working.
+        require('coq_3p') {
+          { src = "builtin/css",    short_name = "nCss" },
+          { src = "builtin/html",   short_name = "nHtml" },
+          { src = "builtin/js",     short_name = "nJs" },
+          { src = "builtin/syntax", short_name = "nSyntax" },
+          --{ src = "repl", sh = "zsh", shell = { p = "perl", n = "node" }, max_lines = 99, deadline = 500, unsafe = { "rm", "poweroff", "mv" } } -- TODO: check this
+          { src = "nvimlua",        short_name = "nLUA",   conf_only = true },
+          { src = "cow",            trigger = "!cow" },
+          { src = "figlet",         short_name = "BIG",    trigger = "!big" },
+          { src = "codeium",        short_name = "COD" }
+        }
+      end
+    }
   },
   init = function()
     -- Your COQ settings here
@@ -35,7 +52,16 @@ return {
   end,
   config = function()
     -- Your LSP settings here
-    require 'lspconfig'.omnisharp.setup {}
-    require 'lspconfig'.lua_ls.setup {}
+    local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+    if not lspconfig_ok then
+      return
+    end
+    local coq_ok, coq = pcall(require, "coq")
+    if not coq_ok then
+      return
+    end
+    lspconfig.omnisharp.setup(coq.lsp_ensure_capabilities())
+    lspconfig.lua_ls.setup(coq.lsp_ensure_capabilities())
+    lspconfig.pyright.setup(coq.lsp_ensure_capabilities())
   end,
 }
