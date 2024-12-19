@@ -12,7 +12,11 @@ vim.keymap.set("n", "<tab>c", ":tab close<CR>")
 vim.keymap.set("n", "<leader><TAB>", ":tabnext<CR>")
 vim.keymap.set("n", "<leader><S-TAB>", ":tabprevious<CR>")
 vim.keymap.set("n", "<leader>t", ":terminal<CR>", { desc = "Open terminal" })
-vim.keymap.set("t", "<leader><Esc>", "<c-\\><c-n>", { desc = "Escape terminal", noremap = true })
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal", noremap = true })
+
+--Custom Plugins
+vim.keymap.set({ "n", "t" }, "<leader>tf", ":FloatTerminal<CR>")
+vim.keymap.set({ "n", "t" }, "<leader>tg", ":FloatLazyGit<CR>")
 
 -- Diagnostics
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open diagnostic" })
