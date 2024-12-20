@@ -11,6 +11,8 @@ vim.keymap.set("n", "<tab><tab>", ":tab split<CR>")
 vim.keymap.set("n", "<tab>c", ":tab close<CR>")
 vim.keymap.set("n", "<leader><TAB>", ":tabnext<CR>")
 vim.keymap.set("n", "<leader><S-TAB>", ":tabprevious<CR>")
+vim.keymap.set("n", "<leader>p", ":bprev<CR>")
+vim.keymap.set("n", "<leader>n", ":bnext<CR>")
 vim.keymap.set("n", "<leader>t", ":terminal<CR>", { desc = "Open terminal" })
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal", noremap = true })
 
