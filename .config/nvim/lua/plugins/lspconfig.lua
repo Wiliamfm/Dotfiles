@@ -65,5 +65,6 @@ return {
     lspconfig.pyright.setup(coq.lsp_ensure_capabilities())
     lspconfig.biome.setup(coq.lsp_ensure_capabilities())
     lspconfig.ts_ls.setup(coq.lsp_ensure_capabilities())
+    lspconfig.ruff.setup(coq.lsp_ensure_capabilities())
   end,
 }
