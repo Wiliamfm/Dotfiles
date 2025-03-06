@@ -60,7 +60,6 @@ return {
     if not coq_ok then
       return
     end
-    lspconfig.omnisharp.setup(coq.lsp_ensure_capabilities())
     lspconfig.lua_ls.setup(coq.lsp_ensure_capabilities())
     lspconfig.pyright.setup(coq.lsp_ensure_capabilities())
     lspconfig.biome.setup(coq.lsp_ensure_capabilities())
