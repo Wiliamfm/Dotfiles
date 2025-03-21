@@ -1,0 +1,6 @@
+font-family = "BigBlueTermPlus Nerd Font Propo"
+theme = "tokyonight_moon"
+theme = "Earthsong"
+background-opacity = 0.75
+
+copy-on-select = "clipboard"
