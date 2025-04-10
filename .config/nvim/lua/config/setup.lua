@@ -28,6 +28,10 @@ vim.opt.cursorcolumn = true
 
 vim.opt.clipboard = "unnamedplus" --use unnamedplus to "use" the system clipboard; "" to use default
 
+-- Editing text (12)
+
+vim.opt.formatexpr = "vim.lsp.formatexpr()"
+
 -- Tabs and indenting
 
 vim.opt.tabstop = 2
