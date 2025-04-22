@@ -48,9 +48,9 @@ vim.api.nvim_create_user_command("FloatTerminal", function()
     state.floating = create_floating_window(state.floating.buf)
     if (vim.bo[state.floating.buf].buftype ~= "terminal") then
       vim.cmd.terminal()
-      vim.cmd("set relativenumber")
       vim.cmd("startinsert")
     end
+    vim.cmd("set relativenumber")
   else
     vim.api.nvim_win_hide(state.floating.win)
   end
