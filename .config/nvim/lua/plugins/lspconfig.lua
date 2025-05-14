@@ -7,7 +7,7 @@ return {
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
-        ensure_installed = { "lua_ls", "omnisharp" }
+        ensure_installed = { "lua_ls", "roslyn", "gopls", "dockerls", "typescript" }
       }
     },
     -- main one
@@ -54,10 +54,12 @@ return {
     -- Your LSP settings here
     local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
     if not lspconfig_ok then
+      print("lspconfig not found")
       return
     end
     local coq_ok, coq = pcall(require, "coq")
     if not coq_ok then
+      print("coq not found")
       return
     end
     lspconfig.lua_ls.setup(coq.lsp_ensure_capabilities())
@@ -66,5 +68,7 @@ return {
     lspconfig.ts_ls.setup(coq.lsp_ensure_capabilities())
     lspconfig.ruff.setup(coq.lsp_ensure_capabilities())
     lspconfig.gopls.setup(coq.lsp_ensure_capabilities())
+    lspconfig.dockerls.setup(coq.lsp_ensure_capabilities())
+    lspconfig.yamlls.setup(coq.lsp_ensure_capabilities())
   end,
 }
