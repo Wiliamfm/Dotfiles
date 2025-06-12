@@ -7,7 +7,7 @@ return {
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
-        ensure_installed = { "lua_ls", "roslyn", "gopls", "dockerls", "typescript" }
+        ensure_installed = { "lua_ls", "gopls", "dockerls", "ts_ls" }
       }
     },
     -- main one
