@@ -47,6 +47,15 @@ return {
       auto_start = true, -- if you want to start COQ at startup
       keymap = {
         recommended = false
+      },
+      completion = {
+        skip_after = {"{", "}", "(", ")"}
+      },
+      clients = {
+        lsp = {
+          short_name = "LSP",
+          weight_adjust = 1.5
+        }
       }
     }
   end,
@@ -70,5 +79,6 @@ return {
     lspconfig.gopls.setup(coq.lsp_ensure_capabilities())
     lspconfig.dockerls.setup(coq.lsp_ensure_capabilities())
     lspconfig.yamlls.setup(coq.lsp_ensure_capabilities())
+    vim.lsp.config("roslyn", coq.lsp_ensure_capabilities())
   end,
 }
