@@ -79,6 +79,5 @@ return {
     lspconfig.gopls.setup(coq.lsp_ensure_capabilities())
     lspconfig.dockerls.setup(coq.lsp_ensure_capabilities())
     lspconfig.yamlls.setup(coq.lsp_ensure_capabilities())
-    vim.lsp.config("roslyn", coq.lsp_ensure_capabilities())
   end,
 }
