@@ -84,6 +84,5 @@ return {
     vim.lsp.config("gopls", coq.lsp_ensure_capabilities())
     vim.lsp.config("dockerls", coq.lsp_ensure_capabilities())
     vim.lsp.config("yamlls", coq.lsp_ensure_capabilities())
-    vim.lsp.config("roslyn_ls", coq.lsp_ensure_capabilities())
   end,
 }

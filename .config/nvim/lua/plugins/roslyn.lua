@@ -1,8 +1,4 @@
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
-
 vim.lsp.config("roslyn", {
-  -- capabilities = vim.lsp.protocol.make_client_capabilities(),
   settings = {
     ["csharp|background_analysis"] = {
       dotnet_analyzer_diagnostics_scope = "fullSolution",
