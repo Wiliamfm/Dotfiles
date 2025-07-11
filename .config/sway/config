@@ -39,7 +39,7 @@ output * bg ~/.config/sway/backgrounds/bing/wallpaper.jpg fill
 #
 exec swayidle -w \
 	timeout 300 'swaylock -fde -c 000000 > ~/.config/sway/log/swaylock.log 2>&1' \
-  timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+  timeout 3600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
   before-sleep 'swaylock -fde -c 000000 > ~/.config/sway/log/swaylock.log 2>&1'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
