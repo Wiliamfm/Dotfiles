@@ -7,7 +7,6 @@ return {
       "williamboman/mason.nvim",
       opts = {
         registries = {
-
           "github:mason-org/mason-registry",
           "github:Crashdummyy/mason-registry",
         }
@@ -17,7 +16,7 @@ return {
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
-        ensure_installed = { "lua_ls", "gopls", "dockerls", "ts_ls", "roslyn_ls", "harper_ls" }
+        ensure_installed = { "lua_ls", "gopls", "dockerls", "ts_ls", "harper_ls" }
       }
     },
   }
