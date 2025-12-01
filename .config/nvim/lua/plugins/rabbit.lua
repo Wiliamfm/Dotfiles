@@ -18,5 +18,5 @@ return {
       require("rabbit").setup( opts )
   end,
   --Windows is not supported.
-  enabled = not is_windows
+  enabled = not is_windows and false
 }
