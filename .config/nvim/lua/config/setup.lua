@@ -8,7 +8,7 @@ vim.g.netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 
 vim.opt.incsearch = true
 
---Displayin text
+--Displaying text
 
 vim.opt.scrolloff = 999
 vim.opt.wrap= true
