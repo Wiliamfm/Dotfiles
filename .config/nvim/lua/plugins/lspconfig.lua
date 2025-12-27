@@ -16,7 +16,7 @@ return {
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
-        ensure_installed = { "lua_ls", "gopls", "dockerls", "ts_ls", "harper_ls" }
+        ensure_installed = { "lua_ls", "gopls", "dockerls", "ts_ls", "harper_ls", "ty" }
       }
     },
   }
