@@ -1,5 +1,6 @@
 return {
   "j-morano/buffer_manager.nvim",
+  dependencies = { "nvim-lua/plenary.nvim" },
   opts = {
     order_buffers = "lastused",
     focus_alternate_buffer = true
