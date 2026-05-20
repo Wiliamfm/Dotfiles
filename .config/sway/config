@@ -16,10 +16,9 @@ set $right l
 # Your preferred terminal emulator
 set $term ghostty
 # Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu wofi --show=drun --allow-images | xargs swaymsg exec --
-bindsym $mod+Shift+d exec wofi --show=run --allow-images | xargs swaymsg exec --
+# Note: pass the final command to swaymsg so that the resulting window can be opened on the original workspace that the command was run on.
+set $menu wmenu-run -i
+bindsym $mod+d exec $menu
 
 ### Output configuration
 #
