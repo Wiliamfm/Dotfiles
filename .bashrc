@@ -12,6 +12,8 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 alias v="nvim"
+alias sudo="doas"
+alias su="doas -s"
 alias wl-recorder='wf-recorder -g "$(slurp)" -f recording.mp4'
 
 export EDITOR=nvim
