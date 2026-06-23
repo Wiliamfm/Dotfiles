@@ -1,0 +1,54 @@
+{
+  "version": 3,
+  "skills": {
+    "dotnet-webapi": {
+      "source": "dotnet/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/dotnet/skills.git",
+      "skillPath": "plugins/dotnet-aspnet/skills/dotnet-webapi/SKILL.md",
+      "skillFolderHash": "707993793ce3383a787f4e2c9f8810b33330ada6",
+      "installedAt": "2026-05-28T16:22:49.539Z",
+      "updatedAt": "2026-05-28T16:22:49.539Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "3013fdeb8a11b10b1eb795ec3ae8bfca38f7c26d",
+      "installedAt": "2026-05-28T16:22:58.487Z",
+      "updatedAt": "2026-05-28T16:22:58.487Z"
+    },
+    "tdd": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/engineering/tdd/SKILL.md",
+      "skillFolderHash": "75beb3030b4c979205dd771ff85ac600baeb68f4",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-06-04T15:42:45.179Z",
+      "updatedAt": "2026-06-04T15:42:45.179Z"
+    },
+    "browser-tools": {
+      "source": "badlogic/pi-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/badlogic/pi-skills.git",
+      "skillPath": "browser-tools/SKILL.md",
+      "skillFolderHash": "d066e177c0ee86d7e0bc13cabdabfd368b983022",
+      "installedAt": "2026-06-05T12:14:17.203Z",
+      "updatedAt": "2026-06-05T12:14:17.203Z"
+    },
+    "optimizing-ef-core-queries": {
+      "source": "dotnet/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/dotnet/skills.git",
+      "skillPath": "plugins/dotnet-data/skills/optimizing-ef-core-queries/SKILL.md",
+      "skillFolderHash": "8458b82866515f8e0b413bd121881c17bf11cdc0",
+      "installedAt": "2026-06-08T12:29:34.691Z",
+      "updatedAt": "2026-06-08T12:29:34.691Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  }
+}
