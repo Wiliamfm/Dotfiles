@@ -15,6 +15,7 @@ alias v="nvim"
 alias sudo="doas"
 alias su="doas -s"
 alias wl-recorder='wf-recorder -g "$(slurp)" -f recording.mp4'
+alias npx="bunx"
 
 export EDITOR=nvim
 #tw: This stands for "other writable". Files that are not owned by the current user but are still writable by other users.
