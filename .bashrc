@@ -17,6 +17,9 @@ alias su="doas -s"
 alias wl-recorder='wf-recorder -g "$(slurp)" -f recording.mp4'
 alias npx="bunx"
 alias lg="lazygit"
+#Manage dead keys
+alias ghostty='GTK_IM_MODULE=simple ghostty'
+alias docker='podman'
 
 export EDITOR=nvim
 #tw: This stands for "other writable". Files that are not owned by the current user but are still writable by other users.
@@ -29,7 +32,9 @@ export HISTCONTROL=erasedups
 
 eval "$(zoxide init --cmd cd bash)"
 
-export PATH="$PATH:$HOME/.dotnet/tools/"
+export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools/"
+export PATH="/home/array/.bun/bin:$PATH"
 
 [[ ${BLE_VERSION-} ]] && ble-attach
 
