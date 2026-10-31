@@ -9,23 +9,16 @@ import vm from "node:vm";
 const skill = '<skill name="ponytail" location="/skills/ponytail">\nInstructions\n</skill>\n';
 const message = (role, content) => ({ type: "message", message: { role, content } });
 
-async function runReview(branch, prompt) {
-	let snapshots = 0;
+async function runReview(branch, prompt, { commands = [] } = {}) {
 	let task;
 	let reviewArgs;
 	let report;
 	const execFile = () => {};
 	execFile[promisify.custom] = (command, args) => {
-		let stdout = "";
-		if (command === "git") {
-			if (args[0] === "rev-parse") stdout = "missing-index";
-			if (args[0] === "write-tree") stdout = String(++snapshots);
-		} else {
-			reviewArgs = args;
-			task = args.at(-1);
-			stdout = "Review report";
-		}
-		return Object.assign(Promise.resolve({ stdout, stderr: "" }), { child: { stdin: { end() {} } } });
+		assert.notEqual(command, "git", "Change discovery belongs to the reviewer");
+		reviewArgs = args;
+		task = args.at(-1);
+		return Object.assign(Promise.resolve({ stdout: "Review report", stderr: "" }), { child: { stdin: { end() {} } } });
 	};
 	const source = readFileSync(new URL("../extensions/ponytail-loop.ts", import.meta.url), "utf8");
 	const extension = new vm.SourceTextModule(stripTypeScriptTypes(source));
@@ -42,6 +35,7 @@ async function runReview(branch, prompt) {
 	extension.namespace.default({
 		on(name, handler) { handlers[name] = handler; },
 		registerCommand() {},
+		getCommands: () => commands,
 		sendMessage(message) { report = message; },
 	});
 	const ctx = {
@@ -54,7 +48,7 @@ async function runReview(branch, prompt) {
 	};
 	await handlers.before_agent_start({ messageType: "user", prompt }, ctx);
 	await handlers.agent_settled({ aborted: false }, ctx);
-	return { task, args: reviewArgs, request: report.details.request };
+	return { task, args: reviewArgs, request: report?.details.request };
 }
 
 test("exploration hands off only the original request, not the plan or approval", async () => {
@@ -99,7 +93,7 @@ test("a fresh ponytail session reviews the current request", async () => {
 	assert.equal(review.request, "add X");
 });
 
-test("the reviewer starts without session history and receives the exact run diff", async () => {
+test("the reviewer starts fresh without requiring git snapshots or a forced diff", async () => {
 	const review = await runReview([], skill + "add X");
 	assert.ok(review.args.includes("--no-session"));
 	assert.ok(review.args.includes("--no-extensions"));
@@ -107,18 +101,43 @@ test("the reviewer starts without session history and receives the exact run dif
 		assert.ok(!review.args.includes(flag));
 	}
 	assert.match(review.task, /^\/skill:ponytail-review /);
-	assert.match(review.task, /git diff 1 2\n/);
+	assert.doesNotMatch(review.task, /git diff/);
 	assert.ok(review.task.endsWith("## Request\nadd X"));
 });
 
-test("later ponytail turns still review against the original request", async () => {
-	const branch = [
+test("the reviewer retains explicitly supplied skills outside normal discovery", async () => {
+	const paths = ["/outside/ponytail-review/SKILL.md", "/outside skills/example-domain/SKILL.md"];
+	const review = await runReview([], skill + "add X", {
+		commands: [
+			...paths.map((path) => ({ source: "skill", sourceInfo: { path } })),
+			{ source: "extension", sourceInfo: { path: "/extensions/example.ts" } },
+		],
+	});
+	const skillPaths = review.args.flatMap((arg, i) => arg === "--skill" ? [review.args[i + 1]] : []);
+	assert.deepEqual(skillPaths, paths);
+	assert.ok(!review.args.includes("/extensions/example.ts"));
+});
+
+test("a later explicit ponytail turn still reviews against the original request", async () => {
+	const review = await runReview([
 		message("user", skill + "add X"),
 		message("assistant", [{ type: "text", text: "Added X in foo.ts" }]),
-	];
-	for (const prompt of ["rename Y", skill + "rename Y"]) {
-		const review = await runReview(branch, prompt);
-		assert.equal(review.request, "add X");
-		assert.ok(review.task.endsWith("## Request\nadd X"));
-	}
+	], skill + "rename Y");
+	assert.equal(review.request, "add X");
+	assert.ok(review.task.endsWith("## Request\nadd X"));
+});
+
+test("quoting a ponytail invocation does not trigger review", async () => {
+	const review = await runReview([], "Explain this prompt:\n\n" + skill + "add X");
+	assert.equal(review.task, undefined);
+	assert.equal(review.request, undefined);
+});
+
+test("an earlier ponytail invocation does not trigger review on a later ordinary turn", async () => {
+	const review = await runReview([
+		message("user", skill + "add X"),
+		message("assistant", "Added X"),
+	], "rename Y");
+	assert.equal(review.task, undefined);
+	assert.equal(review.request, undefined);
 });

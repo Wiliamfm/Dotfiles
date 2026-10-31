@@ -1,14 +1,11 @@
 /**
- * Ponytail loop: after a run in a ponytail session changes files, a fresh
- * `pi` reviews that run's diff against the session's first request. `/fix 2 5`
+ * Ponytail loop: after an explicit ponytail turn, a fresh `pi` reviews
+ * the change against the session's first request. `/fix 2 5`
  * then starts a new session that fixes only those findings (and gets reviewed too).
  */
 import { execFile } from "node:child_process";
-import { copyFileSync, existsSync, mkdtempSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
 import { promisify } from "node:util";
-import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { BorderedLoader } from "@earendil-works/pi-coding-agent";
 
 const exec = promisify(execFile);
@@ -23,54 +20,29 @@ const text = (content: unknown): string =>
 			? content.map((c) => (c?.type === "text" ? c.text : "")).join("\n")
 			: "";
 
-/** Tree hash of the whole working tree (tracked + untracked), without touching the real index. */
-async function snapshot(cwd: string): Promise<string | undefined> {
-	const dir = mkdtempSync(join(tmpdir(), "ponytail-loop-"));
-	const env = { ...process.env, GIT_INDEX_FILE: join(dir, "index") };
-	try {
-		const realIndex = resolve(cwd, (await exec("git", ["rev-parse", "--git-path", "index"], { cwd })).stdout.trim());
-		// start from the real index so git only re-hashes changed files
-		if (existsSync(realIndex)) copyFileSync(realIndex, env.GIT_INDEX_FILE);
-		await exec("git", ["add", "-A"], { cwd, env });
-		return (await exec("git", ["write-tree"], { cwd, env })).stdout.trim();
-	} catch {
-		return undefined; // not a git repo
-	} finally {
-		rmSync(dir, { recursive: true, force: true });
-	}
-}
-
-function ponytailActive(ctx: ExtensionContext, prompt: string): boolean {
-	if (prompt.includes(PONYTAIL_SKILL)) return true;
-	return ctx.sessionManager
-		.getBranch()
-		.some((e) => e.type === "message" && e.message.role === "user" && text(e.message.content).includes(PONYTAIL_SKILL));
-}
-
 export default function (pi: ExtensionAPI) {
-	let pending: { before: string; request: string } | undefined;
+	let pending: { request: string } | undefined;
 
 	pi.on("before_agent_start", async (event, ctx) => {
 		pending = undefined;
 		// print/RPC can't show the review, and Pi waits for agent_settled handlers, so it would only block
-		if (ctx.mode !== "tui" || event.messageType !== "user" || !ponytailActive(ctx, event.prompt)) return;
-		const before = await snapshot(ctx.cwd);
-		if (!before) return;
+		if (ctx.mode !== "tui" || event.messageType !== "user" || !event.prompt.startsWith(PONYTAIL_SKILL)) return;
 		const first = ctx.sessionManager.getBranch().find((e) => e.type === "message" && e.message.role === "user");
 		const request = (first?.type === "message" ? text(first.message.content) : event.prompt).replace(SKILL_BLOCK, "");
-		pending = { before, request: request.match(ROOT_REQUEST)?.[1] ?? request };
+		pending = { request: request.match(ROOT_REQUEST)?.[1] ?? request };
 	});
 
 	pi.on("agent_settled", async (event, ctx) => {
 		const current = pending;
 		pending = undefined;
 		if (!current || event.aborted) return;
-		const after = await snapshot(ctx.cwd);
-		if (!after || after === current.before) return;
 
-		const task = `/skill:ponytail-review Review the change made for the request below. See the change with: git diff ${current.before} ${after}\n\n## Request\n${current.request}`;
+		const task = `/skill:ponytail-review Review the change made for the request below. Apply other available skills where relevant to the review. Report only; do not modify files.\n\n## Request\n${current.request}`;
 		const args = [process.argv[1], "-p", "--no-session", "--no-extensions", "--tools", "read,grep,find,ls,bash"];
 		if (ctx.model) args.push("--model", `${ctx.model.provider}/${ctx.model.id}`, "--thinking", pi.getThinkingLevel());
+		for (const command of pi.getCommands()) {
+			if (command.source === "skill" && command.sourceInfo.path) args.push("--skill", command.sourceInfo.path);
+		}
 		args.push(task);
 
 		const review = async (signal?: AbortSignal) => {
