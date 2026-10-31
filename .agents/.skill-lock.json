@@ -46,9 +46,88 @@
       "skillFolderHash": "8458b82866515f8e0b413bd121881c17bf11cdc0",
       "installedAt": "2026-06-08T12:29:34.691Z",
       "updatedAt": "2026-06-08T12:29:34.691Z"
+    },
+    "svelte-code-writer": {
+      "source": "sveltejs/ai-tools",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/sveltejs/ai-tools.git",
+      "skillPath": "plugins/claude/svelte/skills/svelte-code-writer/SKILL.md",
+      "skillFolderHash": "d1fe3546e88768cc3bb8bbf052a059fc195f180b",
+      "installedAt": "2026-06-29T17:53:21.716Z",
+      "updatedAt": "2026-06-29T17:53:21.716Z"
+    },
+    "svelte-core-bestpractices": {
+      "source": "sveltejs/ai-tools",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/sveltejs/ai-tools.git",
+      "skillPath": "plugins/claude/svelte/skills/svelte-core-bestpractices/SKILL.md",
+      "skillFolderHash": "dc5e4f0dc9844316967acca220d313780ed452b1",
+      "installedAt": "2026-06-29T17:56:17.146Z",
+      "updatedAt": "2026-06-29T17:56:17.146Z"
+    },
+    "integrate-anything": {
+      "source": "membranehq/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/membranehq/agent-skills.git",
+      "skillPath": "skills/integrate-anything/SKILL.md",
+      "skillFolderHash": "1daafa5edb62a95f4db8643ed668e1490968aa96",
+      "installedAt": "2026-10-02T00:51:32.359Z",
+      "updatedAt": "2026-10-02T00:51:32.359Z"
+    },
+    "ponytail": {
+      "source": "dietrichgebert/ponytail",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/dietrichgebert/ponytail.git",
+      "skillPath": "skills/ponytail/SKILL.md",
+      "skillFolderHash": "e8d3fa76e7ff9223a784dbd4bcfc9ff46b3fa55d",
+      "installedAt": "2026-10-22T12:06:07.697Z",
+      "updatedAt": "2026-10-22T12:06:07.697Z"
+    },
+    "ponytail-review": {
+      "source": "dietrichgebert/ponytail",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/dietrichgebert/ponytail.git",
+      "skillPath": "skills/ponytail-review/SKILL.md",
+      "skillFolderHash": "8ad8430c42a6f8cd18758dddb70cfee399725de6",
+      "installedAt": "2026-10-22T12:09:52.140Z",
+      "updatedAt": "2026-10-22T12:09:52.140Z"
+    },
+    "ponytail-debt": {
+      "source": "dietrichgebert/ponytail",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/dietrichgebert/ponytail.git",
+      "skillPath": "skills/ponytail-debt/SKILL.md",
+      "skillFolderHash": "16c3b7953629510afa8f061f0fefa61a104e3020",
+      "installedAt": "2026-10-22T12:11:43.424Z",
+      "updatedAt": "2026-10-22T12:11:43.424Z"
+    },
+    "ponytail-audit": {
+      "source": "dietrichgebert/ponytail",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/dietrichgebert/ponytail.git",
+      "skillPath": "skills/ponytail-audit/SKILL.md",
+      "skillFolderHash": "0c1468092a2b011b7acd369becea098f0c17f1c0",
+      "installedAt": "2026-10-22T12:12:07.961Z",
+      "updatedAt": "2026-10-22T12:12:07.961Z"
     }
   },
   "dismissed": {
     "findSkillsPrompt": true
-  }
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "droid",
+    "fx",
+    "gemini-cli",
+    "github-copilot",
+    "kilo",
+    "kimi-code-cli",
+    "opencode",
+    "pi",
+    "warp",
+    "zed"
+  ]
 }
