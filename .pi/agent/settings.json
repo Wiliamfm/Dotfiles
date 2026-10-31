@@ -4,5 +4,11 @@
   "defaultModel": "claude-opus-5-5",
   "defaultThinkingLevel": "high",
   "hideThinkingBlock": false,
-  "theme": "dark"
+  "theme": "dark",
+  "enabledModels": [
+    "openai-codex/gpt-6.1-sol",
+    "openai-codex/gpt-6-sol",
+    "openai-codex/gpt-6-luna",
+    "openai-codex/gpt-6-astra"
+  ]
 }
