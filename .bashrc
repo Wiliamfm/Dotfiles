@@ -34,7 +34,6 @@ eval "$(zoxide init --cmd cd bash)"
 
 export DOTNET_ROOT="$HOME/.dotnet"
 export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools/"
-export PATH="/home/array/.bun/bin:$PATH"
 
 [[ ${BLE_VERSION-} ]] && ble-attach
 
