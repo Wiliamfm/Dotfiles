@@ -1,6 +1,6 @@
 /**
  * Ponytail loop: after a run in a ponytail session changes files, a fresh
- * `pi` reviews that run's diff with the ponytail-review skill. `/fix 2 5`
+ * `pi` reviews that run's diff against the session's first request. `/fix 2 5`
  * then starts a new session that fixes only those findings (and gets reviewed too).
  */
 import { execFile } from "node:child_process";
@@ -13,7 +13,7 @@ import { BorderedLoader } from "@earendil-works/pi-coding-agent";
 
 const exec = promisify(execFile);
 const PONYTAIL_SKILL = '<skill name="ponytail" ';
-const SKILL_BLOCK = /^<skill name="[^"]+" location="[^"]+">\n[\s\S]*?\n<\/skill>\n*/;
+const SKILL_BLOCK = /^(?:<skill name="[^"]+" location="[^"]+">\n[\s\S]*?\n<\/skill>\n*)+/;
 const ROOT_REQUEST = /<request>\n([\s\S]*?)\n<\/request>/;
 
 const text = (content: unknown): string =>
@@ -55,7 +55,10 @@ export default function (pi: ExtensionAPI) {
 		// print/RPC can't show the review, and Pi waits for agent_settled handlers, so it would only block
 		if (ctx.mode !== "tui" || event.messageType !== "user" || !ponytailActive(ctx, event.prompt)) return;
 		const before = await snapshot(ctx.cwd);
-		if (before) pending = { before, request: event.prompt.replace(SKILL_BLOCK, "") };
+		if (!before) return;
+		const first = ctx.sessionManager.getBranch().find((e) => e.type === "message" && e.message.role === "user");
+		const request = (first?.type === "message" ? text(first.message.content) : event.prompt).replace(SKILL_BLOCK, "");
+		pending = { before, request: request.match(ROOT_REQUEST)?.[1] ?? request };
 	});
 
 	pi.on("agent_settled", async (event, ctx) => {
@@ -88,9 +91,8 @@ export default function (pi: ExtensionAPI) {
 		});
 		if (!report) return;
 
-		const request = current.request.match(ROOT_REQUEST)?.[1] ?? current.request;
 		pi.sendMessage(
-			{ customType: "ponytail-review", content: `## Ponytail review\n\n${report}`, display: true, details: { request } },
+			{ customType: "ponytail-review", content: `## Ponytail review\n\n${report}`, display: true, details: { request: current.request } },
 			{ triggerTurn: false },
 		);
 	});
